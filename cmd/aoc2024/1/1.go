@@ -38,16 +38,12 @@ func AOC2024_1() {
 		fmt.Println("Error reading file:", err)
 	}
 
-	fmt.Println((locationsList1))
-	fmt.Println((locationsList2))
-
 	sort.Ints(locationsList1)
 	sort.Ints(locationsList2)
 
 	var sum int
 
 	for index, _ := range locationsList1 {
-		fmt.Println((index))
 		var tempSum int
 		tempSum = locationsList1[index] - locationsList2[index]
 		if tempSum < 0 {

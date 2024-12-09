@@ -9,14 +9,13 @@ import (
 	"strings"
 )
 
-func AOC2024_1() {
+func readInputFile() ([2][1000]int, error) {
 	var locationsList1 []int
 	var locationsList2 []int
 
 	file, err := os.Open("./cmd/aoc2024/1/input.txt")
 	if err != nil {
 		fmt.Println("Error opening file:", err)
-		return
 	}
 	defer file.Close()
 
@@ -41,16 +40,27 @@ func AOC2024_1() {
 	sort.Ints(locationsList1)
 	sort.Ints(locationsList2)
 
+	res := [2][1000]int{[1000]int(locationsList1), [1000]int(locationsList2)}
+	return res, nil
+}
+
+func AOC2024_1() {
+	arrays, _ := readInputFile()
+
 	var sum int
 
-	for index, _ := range locationsList1 {
+	for index, val := range arrays[0] {
 		var tempSum int
-		tempSum = locationsList1[index] - locationsList2[index]
+		tempSum = val - arrays[1][index]
 		if tempSum < 0 {
 			tempSum = tempSum * -1
 		}
 		sum += tempSum
 	}
 
-	fmt.Println(sum)
+	fmt.Println("Total Distance:", sum)
+}
+
+func AOC2024_2() {
+	arrays, _ := readInputFile()
 }
